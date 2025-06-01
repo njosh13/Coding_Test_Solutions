@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Digital Clock</title>
+  </head>
+  <body>
+    <div id="clock"></div>
+  </body>
+</html>
+
+<script>
+  function myDigitalClock() {
+    var d1 = new Date();
+    var hours = d1.getHours(); // 0 - 23
+    var minutes = d1.getMinutes(); // 0 - 59
+    var seconds = d1.getSeconds(); // 0 - 59
+    var zone = "AM";
+
+    // Convert to 12-hour format and determine AM/PM
+    if (hours >= 12) {
+      zone = "PM";
+      if (hours > 12) {
+        hours -= 12;
+      }
+    }
+
+    // Add leading zeros to minutes and seconds if they're less than 10
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    // Create the digital clock display
+    var digitalClock = hours + ":" + minutes + ":" + seconds + " " + zone;
+
+    // Update the clock display in the HTML element with id "clock"
+    document.getElementById("clock").textContent = digitalClock;
+
+    // Update the clock every 1 second
+    setTimeout(myDigitalClock, 1000);
+  }
+
+  // Call the function to start the clock
+  myDigitalClock();
+</script>
